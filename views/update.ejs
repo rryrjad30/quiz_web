@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <form method="post" action="/update/<%= data.id %>">
+        <div>
+            <label>Firstname:</label>
+            <input type="text" name="firstname" value="<%= data.firstname %>"/>
+        </div>
+        <div>
+            <label>Lastname:</label>
+            <input type="text" name="lastname" value="<%= data.lastname %>" />
+        </div>
+        <div class="input-group">
+            <input name="gender" id="gender-0" value="male" checked="checked" type="radio">
+            Male
+            <input name="gender" id="gender-1" value="female" type="radio">
+            Female
+        </div>
+        <div>
+            <label>Religion:</label>
+            <input type="text" name="religion" value="<%= data.religion %>" />
+        </div>
+        <div>
+            <label>Email:</label>
+            <input type="text" name="email" value="<%= data.email %>" />
+        </div>
+        
+        <div><input type="submit" value="Update"></div>
+
+    </form>
+</body>
+</html>

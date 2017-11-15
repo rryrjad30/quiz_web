@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data</title>
+    <!-- <style>
+        .success { color: green; }
+        .warning { color: orange; }
+        .error { color: red; }
+    </style> -->
+</head>
+<body>
+<h1>Welcome !</h1>
+    <form method="post" action="/">
+        <div>
+            <label>Firstname:</label>
+            <input type="text" name="firstname"/>
+        </div>
+        <div>
+            <label>Lastname:</label>
+            <input type="text" name="lastname"/>
+        </div>
+        <div class="input-group">
+            <input name="gender" id="gender-0" value="male" checked="checked" type="radio">
+            Male
+            <input name="gender" id="gender-1" value="female" type="radio">
+            Female
+        </div>
+        <div>
+            <label>Religion:</label>
+            <input type="text" name="religion"/>
+        </div>
+        <div>
+            <label>Email:</label>
+            <input type="text" name="email"/>
+        </div>
+        <div><input type="submit" value="Tambah"></div>
+    </form>
+    <% if (flash.length > 0) { %>
+    <ul>
+        <% while (m = flash.pop()) { %>
+        <li class="<%= m.class %>"><%= m.message %></li>
+        <% } %>
+    </ul>
+    <% } %>
+    <!-- <form method="get" action="/saring"> -->
+        <!-- <input type="text" name="saring"> <input type="submit" value="Filter"> -->
+    <!-- </form> -->
+    <table>
+        <tr>
+            <td>Firstname</td>
+            <td>Lastname</td>
+            <td>Gender</td>
+            <td>Religion</td>
+            <td>Email</td>
+        </tr>
+        <% for (i in data) { %>
+        <tr>
+            <td><%= data[i].firstname %></td>
+            <td><%= data[i].lastname %></td>
+            <td><%= data[i].gender %></td>
+            <td><%= data[i].religion %></td>
+            <td><%= data[i].email %></td>
+            <td><a href="/update/<%= data[i].id %>">Edit</a>
+                <a href="/delete/<%= data[i].id %>">Delete</a></td>
+            </tr>
+            <% } %>
+        </table>
+        <div>
+            <% if (pagination) { %>
+            <% if (pagination.page != 1 ) { %><a href="/?page=1">First</a><% } %>
+            <% if (pagination.prev_page) { %><a href="/?page=<%= pagination.prev_page %>">prev</a><% } %>
+            <% for (i = 1; i <= pagination.total_pages; i++) { %>
+            <% if (i != pagination.page) { %>
+            <a href="/?page=<%= i %>"><%= i %></a>
+            <% } else { %>
+            <span><%= i %></span>
+            <% } %>
+            <% } %>
+            <% if (pagination.next_page) { %><a href="/?page=<%= pagination.next_page %>">next</a><% } %>
+            <% if (pagination.page != pagination.total_pages ) { %><a href="/?page=<%= pagination.total_pages %>">Last</a><% } %>
+            <% } %>
+        </div>
+    </body>
+    </html>
